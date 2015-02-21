@@ -1,9 +1,10 @@
-from collective.rooter import getNavigationRoot
 from Products.CMFPlone.CatalogTool import CatalogTool
+from collective.rooter.navroot import getNavigationRoot
 
-# Make portal_catalog's search function use a navigation root if no path parameter is given
-
+# Make portal_catalog's search function use a navigation root if no path
+# parameter is given
 CatalogTool._oldSearchResults = CatalogTool.searchResults
+
 
 def searchResults(self, REQUEST=None, **kw):
     if 'path' not in kw and (REQUEST is None or 'path' not in REQUEST):

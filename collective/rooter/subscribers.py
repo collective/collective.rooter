@@ -1,10 +1,9 @@
-from zope.component import adapter
-
+from collective.rooter.navroot import setNavigationRoot
 from plone.app.layout.navigation.interfaces import INavigationRoot
 from zope.app.publication.interfaces import IBeforeTraverseEvent
 from zope.app.publication.interfaces import IEndRequestEvent
+from zope.component import adapter
 
-from collective.rooter.navroot import setNavigationRoot
 
 @adapter(INavigationRoot, IBeforeTraverseEvent)
 def record_navigation_root(obj, event):
@@ -12,6 +11,7 @@ def record_navigation_root(obj, event):
     record the navigation root in a thread-local.
     """
     setNavigationRoot(obj)
+
 
 @adapter(IEndRequestEvent)
 def clean_navigation_root(event):
