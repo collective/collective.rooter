@@ -28,7 +28,12 @@ setup(
     zip_safe=False,
     install_requires=[
         'setuptools',
+        'Products.CMFPlone',
         'collective.monkeypatcher',
+        'plone.app.layout',
+        'zope.component',
+        'zope.publisher',
+        'zope.traversing',
     ],
     extras_require=dict(
         test=[
@@ -36,5 +41,8 @@ setup(
         ],
     ),
     entry_points="""
-      """,
+    # -*- Entry points: -*-
+    [z3c.autoinclude.plugin]
+    target = plone
+    """,
 )
