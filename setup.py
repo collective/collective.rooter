@@ -27,6 +27,11 @@ setup(name='collective.rooter',
           'setuptools',
           'collective.monkeypatcher',
       ],
+      extras_require=dict(
+          test=[
+              'Products.PloneTestCase',
+          ],
+      ),
       entry_points="""
       """,
       )
