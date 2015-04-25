@@ -30,7 +30,9 @@ setup(
         'setuptools',
         'Products.CMFPlone',
         'collective.monkeypatcher',
+        'plone.api',
         'plone.app.layout',
+        'plone.app.uuid',
         'zope.component',
         'zope.publisher',
         'zope.traversing',
@@ -38,6 +40,7 @@ setup(
     extras_require=dict(
         test=[
             'Products.PloneTestCase',
+            'plone.uuid',
         ],
     ),
     entry_points="""

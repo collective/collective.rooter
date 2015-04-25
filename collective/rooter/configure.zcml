@@ -22,4 +22,10 @@
       preservedoc="false"
       />
 
+  <monkey:patch
+      module="plone.app.uuid.utils"
+      original="uuidToCatalogBrain"
+      replacement=".catalog.uuidToCatalogBrain"
+      />
+
 </configure>

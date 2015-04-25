@@ -5,6 +5,8 @@ from Products.PloneTestCase import PloneTestCase as ptc
 from Products.PloneTestCase.layer import onsetup
 from collective.rooter import getNavigationRoot
 from plone.app.layout.navigation.interfaces import INavigationRoot
+from plone.app.uuid.utils import uuidToObject
+from plone.uuid.interfaces import IUUID
 from zope.app.publication.interfaces import BeforeTraverseEvent
 from zope.event import notify
 from zope.interface import alsoProvides
@@ -76,6 +78,27 @@ class IntegrationTests(ptc.PloneTestCase):
         results = [x.getId for x in lazy]
         self.failUnless('d1' in results)
         self.failUnless('d2' in results)
+
+    def test_get_obj_by_uuid(self):
+        """uuidToObject should also return objects from other subsites, if the
+        UUID is known and permissions allow to.
+        """
+        self.setRoles(['Manager'])
+        self.portal.invokeFactory('Folder', 'site1')
+        alsoProvides(self.portal.site1, INavigationRoot)
+
+        self.portal.invokeFactory('Document', 'd1')
+        d1 = self.portal['d1']
+
+        # Simulate traversal
+        notify(BeforeTraverseEvent(self.portal.site1, self.portal.REQUEST))
+
+        root = getNavigationRoot()
+        self.assertEquals(
+            root.absolute_url(),
+            self.portal.site1.absolute_url())
+
+        self.assertEqual(uuidToObject(IUUID(d1)), d1)
 
 
 def test_suite():
