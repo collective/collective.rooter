@@ -3,10 +3,11 @@ Introduction
 
 This package adds a patch to Plone to ensure that call catalog queries are
 'rooted' to the current navigation root (as defined by the INavigationRoot
-interface). When installed, all catalog queries will have an implicit 'path'
+interface). When installed, all catalog queries will have an implicit ``path``
 parameter that limits search results to within the current navigation root,
-unless a 'path' parameter is explicitly provided. This avoids "leakage" of
-search results, portlet listings and the like.
+unless a ``path`` or ``UID`` parameter is explicitly provided. This avoids
+"leakage" of search results, portlet listings and the like. If a ``UID``
+parameter is present, known content can be explicitly searched.
 
 In this context, the navigation root must be:
 
