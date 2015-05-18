@@ -4,10 +4,9 @@ Changelog
 1.0 (unreleased)
 ----------------
 
-- Patch ``plone.app.uuid.utils.uuidToCatalogBrain`` to search from the portal
-  root path instead of ``INavigationRoot`` path. This allows to find content
-  from other subsites via the UUID. Objects are still secured by permission
-  checks.
+- If ``UID`` is given in the catalog search keywords, don't apply the
+  INavigationRoot path. This allows for explicit queries for known objects in
+  other areas of the portal. Obsoletes pull-request #1.
   [thet]
 
 - PEP 8.
