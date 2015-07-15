@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0 (unreleased)
+1.0 (2015-07-15)
 ----------------
 
 - If ``UID`` is given in the catalog search keywords, don't apply the
